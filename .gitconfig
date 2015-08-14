@@ -1,0 +1,7 @@
+[user]
+	name = EkTheGod
+	email = ekachart_ek@hotmail.com
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
