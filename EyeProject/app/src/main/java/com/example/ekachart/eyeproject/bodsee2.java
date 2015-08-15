@@ -2,12 +2,15 @@ package com.example.ekachart.eyeproject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Ekachart on 31/12/2557.
@@ -18,14 +21,39 @@ public class bodsee2 extends Activity{
     private TextView test;
     private ImageButton delete;
     private String answer;
+    private ImageView pic;
+    private int[] ans = new int[]{0,0,29, 8, 16, 7, 74, 45, 15, 9, 97, 5, 3, 73};
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bodsee2);
         init();
+        i=2;
         button();
-        checkans();
+        if(i>13){
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getApplicationContext(),bodsee14.class);
+                    startActivity(i);
+                }
+            });
+
+        }
+    }
+
+    private void nextPic(){
+        i++;
+        pic.setImageResource(getResourceByFilename(getApplicationContext(), "image" + i));
+        checkans(i);
+    }
+
+    private void backPic(){
+        i--;
+        pic.setImageResource( getResourceByFilename(getApplicationContext(),"image"+i) );
+        checkans(i);
     }
 
     private void init() {
@@ -46,22 +74,26 @@ public class bodsee2 extends Activity{
         next = (Button)findViewById(R.id.next);
         home = (Button)findViewById(R.id.home);
         delete = (ImageButton)findViewById(R.id.delete);
+        pic = (ImageView) findViewById(R.id.imageView);
+
     }//end init
 
-    private void button(){
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),bodsee.class);
-                startActivity(i);
-            }
-        });
+    public static int getResourceByFilename(Context context, String filename) {
+        return context.getResources().getIdentifier(filename, "drawable", context.getPackageName());
+    }
 
+    private void button(){
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),bodsee3.class);
-                startActivity(i);
+                nextPic();
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backPic();
             }
         });
 
@@ -161,13 +193,13 @@ public class bodsee2 extends Activity{
         });
     }//end button
 
-    private void checkans(){
+    private void checkans(final int j){
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(bodsee2.this);
                 builder.setTitle("ตรวจสอบ");
-                if(test.getText().toString().equals("29"))
+                if(test.getText().toString().equals(Integer.toString(j)))
                     answer = "Yes";
                 else
                     answer = "No";
