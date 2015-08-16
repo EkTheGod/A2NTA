@@ -33,18 +33,31 @@ public class bodsee2 extends Activity{
         i=2;
         button();
         checkans();
+        
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i<=12) {
+                    test.setText("");
+                    nextPic();
+                }
+                else {
+                    Intent i = new Intent(getApplicationContext(),bodsee14.class);
+                    startActivity(i);
+                }
+            }
+        });
+        
     }
 
     private void nextPic() {
         i++;
         pic.setImageResource(getResourceByFilename(getApplicationContext(), "image" + i));
-        Toast.makeText(getApplicationContext(), Integer.toString(i),Toast.LENGTH_SHORT).show();
     }
 
     private void backPic(){
         i--;
         pic.setImageResource(getResourceByFilename(getApplicationContext(), "image" + i));
-        Toast.makeText(getApplicationContext(), Integer.toString(i),Toast.LENGTH_SHORT).show();
     }
 
     private void init() {
@@ -74,26 +87,6 @@ public class bodsee2 extends Activity{
     }
 
     private void button(){
-
-        if(i<=12) {
-            next.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    test.setText("");
-                    nextPic();
-                }
-            });
-        }
-
-        if(i>=13){
-            next.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getApplicationContext(),bodsee14.class);
-                    startActivity(i);
-                }
-            });
-        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
