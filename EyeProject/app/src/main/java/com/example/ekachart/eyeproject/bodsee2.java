@@ -32,28 +32,19 @@ public class bodsee2 extends Activity{
         init();
         i=2;
         button();
-        if(i>13){
-            next.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getApplicationContext(),bodsee14.class);
-                    startActivity(i);
-                }
-            });
-
-        }
+        checkans();
     }
 
-    private void nextPic(){
+    private void nextPic() {
         i++;
         pic.setImageResource(getResourceByFilename(getApplicationContext(), "image" + i));
-        checkans(i);
+        Toast.makeText(getApplicationContext(), Integer.toString(i),Toast.LENGTH_SHORT).show();
     }
 
     private void backPic(){
         i--;
-        pic.setImageResource( getResourceByFilename(getApplicationContext(),"image"+i) );
-        checkans(i);
+        pic.setImageResource(getResourceByFilename(getApplicationContext(), "image" + i));
+        Toast.makeText(getApplicationContext(), Integer.toString(i),Toast.LENGTH_SHORT).show();
     }
 
     private void init() {
@@ -83,16 +74,31 @@ public class bodsee2 extends Activity{
     }
 
     private void button(){
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextPic();
-            }
-        });
+
+        if(i<=12) {
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    test.setText("");
+                    nextPic();
+                }
+            });
+        }
+
+        if(i>=13){
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getApplicationContext(),bodsee14.class);
+                    startActivity(i);
+                }
+            });
+        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                test.setText("");
                 backPic();
             }
         });
@@ -193,13 +199,13 @@ public class bodsee2 extends Activity{
         });
     }//end button
 
-    private void checkans(final int j){
+    private void checkans(){
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(bodsee2.this);
                 builder.setTitle("ตรวจสอบ");
-                if(test.getText().toString().equals(Integer.toString(j)))
+                if(test.getText().toString().equals(Integer.toString(ans[i])))
                     answer = "Yes";
                 else
                     answer = "No";
