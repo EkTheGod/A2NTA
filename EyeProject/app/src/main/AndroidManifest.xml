@@ -50,6 +50,8 @@
                 android:screenOrientation="portrait"/>
             <activity android:name="com.example.ekachart.eyeproject.bodsee14"
                 android:screenOrientation="portrait"/>
+            <activity android:name="com.example.ekachart.eyeproject.test"
+                android:screenOrientation="portrait"/>
     </application>
     <uses-permission android:name="android.permission.CAMERA"/>
 

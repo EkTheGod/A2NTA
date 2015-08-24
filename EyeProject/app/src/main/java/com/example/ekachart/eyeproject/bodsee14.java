@@ -19,7 +19,7 @@ public class bodsee14 extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),bodsee13.class);
+                Intent i = new Intent(getApplicationContext(),bodsee2.class);
                 startActivity(i);
             }
         });

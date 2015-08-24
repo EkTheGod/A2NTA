@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -17,6 +20,7 @@ public class bodsee extends Activity{
     private Button[] input;
     private TextView test;
     private ImageButton delete;
+    private ImageView pic;
     private String answer;
 
     @Override
@@ -26,6 +30,15 @@ public class bodsee extends Activity{
         init();
         button();
         checkans();
+
+        pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),test.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void init() {
@@ -45,6 +58,7 @@ public class bodsee extends Activity{
         home = (Button)findViewById(R.id.home);
         next = (Button)findViewById(R.id.next);
         delete = (ImageButton)findViewById(R.id.delete);
+        pic = (ImageView) findViewById(R.id.imageView);
     }//end init
 
     private void button(){

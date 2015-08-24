@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.content.Intent;
+
 
 /**
  * Created by Ekachart on 31/12/2557.
@@ -21,6 +23,7 @@ public class bodsee2 extends Activity{
     private TextView test;
     private ImageButton delete;
     private String answer;
+    private ScrollView mainscrollview;
     private ImageView pic;
     private int[] ans = new int[]{0,0,29, 8, 16, 7, 74, 45, 15, 9, 97, 5, 3, 73};
     int i;
@@ -33,21 +36,16 @@ public class bodsee2 extends Activity{
         i=2;
         button();
         checkans();
-        
-        next.setOnClickListener(new View.OnClickListener() {
+
+        pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(i<=12) {
-                    test.setText("");
-                    nextPic();
-                }
-                else {
-                    Intent i = new Intent(getApplicationContext(),bodsee14.class);
-                    startActivity(i);
-                }
+                Intent j = new Intent(getApplicationContext(), test.class);
+                j.putExtra("num",Integer.toString(i));
+                startActivity(j);
             }
         });
-        
+
     }
 
     private void nextPic() {
@@ -79,6 +77,7 @@ public class bodsee2 extends Activity{
         home = (Button)findViewById(R.id.home);
         delete = (ImageButton)findViewById(R.id.delete);
         pic = (ImageView) findViewById(R.id.imageView);
+        mainscrollview = (ScrollView) findViewById(R.id.main);
 
     }//end init
 
@@ -88,9 +87,25 @@ public class bodsee2 extends Activity{
 
     private void button(){
 
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i<=12) {
+                    mainscrollview.fullScroll(ScrollView.FOCUS_UP);
+                    test.setText("");
+                    nextPic();
+                }
+                else {
+                    Intent i = new Intent(getApplicationContext(),bodsee14.class);
+                    startActivity(i);
+                }
+            }
+        });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mainscrollview.fullScroll(ScrollView.FOCUS_UP);
                 test.setText("");
                 backPic();
             }
