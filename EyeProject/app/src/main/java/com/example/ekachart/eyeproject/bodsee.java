@@ -60,8 +60,7 @@ public class bodsee extends Activity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent i = new Intent(getApplicationContext(),bodsee2.class);
-                //startActivity(i);
+
             }
         });
 
