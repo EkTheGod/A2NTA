@@ -18,6 +18,7 @@ public class bodsee3 extends Activity{
     private TextView test;
     private ImageButton delete;
     private String answer;
+    private BodseeData bodseeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class bodsee3 extends Activity{
         setContentView(R.layout.bodsee3);
         init();
         button();
-        checkans();
+        checkAns();
     }
 
     private void init() {
@@ -161,13 +162,13 @@ public class bodsee3 extends Activity{
         });
     }//end button
 
-    private void checkans(){
+    private void checkAns(){
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(bodsee3.this);
                 builder.setTitle("ตรวจสอบ");
-                if(test.getText().toString().equals("8"))
+                if( test.getText().toString().equals("8"))
                     answer = "Yes";
                 else
                     answer = "No";

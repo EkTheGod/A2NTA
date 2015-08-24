@@ -207,22 +207,6 @@ public class bodsee2 extends Activity{
         });
     }//end button
 
-    private void checkans(){
-        check.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(bodsee2.this);
-                builder.setTitle("ตรวจสอบ");
-                if(test.getText().toString().equals(Integer.toString(ans[i])))
-                    answer = "Yes";
-                else
-                    answer = "No";
-                builder.setMessage(answer);
-                builder.setNegativeButton("ตกลง", null);
-                builder.create();
-                builder.show();
-            }
-        });
-    }//end checkans
+
 
 }//end class
