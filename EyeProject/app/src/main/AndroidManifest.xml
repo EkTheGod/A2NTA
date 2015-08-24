@@ -23,34 +23,6 @@
                 android:screenOrientation="portrait"/>
         <activity android:name="com.example.ekachart.eyeproject.bodsee"
                 android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee2"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee3"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee4"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee5"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee6"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee7"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee8"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee9"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee10"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee11"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee12"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee13"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee14"
-                android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.test"
-                android:screenOrientation="portrait"/>
     </application>
     <uses-permission android:name="android.permission.CAMERA"/>
 

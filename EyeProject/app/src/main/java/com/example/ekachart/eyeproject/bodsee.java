@@ -2,6 +2,7 @@ package com.example.ekachart.eyeproject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,22 +23,15 @@ public class bodsee extends Activity{
     private ImageButton delete;
     private ImageView pic;
     private String answer;
+    private ImageView imageViewBodSee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bodsee1);
         init();
-        button();
-        checkans();
-
-        pic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),test.class);
-                startActivity(i);
-            }
-        });
+        initButton();
+        checkAns();
 
     }
 
@@ -58,16 +52,16 @@ public class bodsee extends Activity{
         home = (Button)findViewById(R.id.home);
         next = (Button)findViewById(R.id.next);
         delete = (ImageButton)findViewById(R.id.delete);
-        pic = (ImageView) findViewById(R.id.imageView);
+        pic = (ImageView) findViewById(R.id.bodseeIV);
     }//end init
 
-    private void button(){
+    private void initButton(){
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),bodsee2.class);
-                startActivity(i);
+                //Intent i = new Intent(getApplicationContext(),bodsee2.class);
+                //startActivity(i);
             }
         });
 
@@ -167,7 +161,7 @@ public class bodsee extends Activity{
         });
     }//end button
 
-    private void checkans(){
+    private void checkAns(){
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,5 +178,9 @@ public class bodsee extends Activity{
             }
         });
     }//end checkans
+
+    public static int getResourceByFilename(Context context, String filename) {
+        return context.getResources().getIdentifier(filename, "drawable", context.getPackageName());
+    }
 
 }//end class
