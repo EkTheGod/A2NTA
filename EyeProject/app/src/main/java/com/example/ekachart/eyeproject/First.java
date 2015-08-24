@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import org.opencv.android.OpenCVLoader;
 
 
 
@@ -30,14 +29,6 @@ public class First extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), bodsee.class);
-                startActivity(i);
-            }
-        });
-        sunyao = (Button)findViewById(R.id.button);
-        sunyao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), Sunyao.class);
                 startActivity(i);
             }
         });

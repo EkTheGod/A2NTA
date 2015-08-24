@@ -21,8 +21,7 @@
                 android:screenOrientation="portrait"/>
             <activity android:name="com.example.ekachart.eyeproject.iang"
                 android:screenOrientation="portrait"/>
-            <activity android:name="com.example.ekachart.eyeproject.Sunyao"/>
-            <activity android:name="com.example.ekachart.eyeproject.bodsee"
+        <activity android:name="com.example.ekachart.eyeproject.bodsee"
                 android:screenOrientation="portrait"/>
             <activity android:name="com.example.ekachart.eyeproject.bodsee2"
                 android:screenOrientation="portrait"/>
