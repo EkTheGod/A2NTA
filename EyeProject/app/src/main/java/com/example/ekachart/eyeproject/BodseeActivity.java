@@ -3,11 +3,10 @@ package com.example.ekachart.eyeproject;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,14 +15,14 @@ import android.widget.TextView;
 /**
  * Created by Ekachart on 28/12/2557.
  */
-public class bodsee extends Activity{
+public class BodseeActivity extends Activity{
     private Button check,next,home;
     private Button[] input;
     private TextView test;
     private ImageButton delete;
-    private ImageView pic;
     private String answer;
     private ImageView imageViewBodSee;
+    private BodseeData bodseeData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +30,6 @@ public class bodsee extends Activity{
         setContentView(R.layout.bodsee1);
         init();
         initButton();
-        checkAns();
-
     }
 
     private void init() {
@@ -52,7 +49,8 @@ public class bodsee extends Activity{
         home = (Button)findViewById(R.id.home);
         next = (Button)findViewById(R.id.next);
         delete = (ImageButton)findViewById(R.id.delete);
-        pic = (ImageView) findViewById(R.id.bodseeIV);
+        imageViewBodSee = (ImageView) findViewById(R.id.bodseeIV);
+        bodseeData = new BodseeData();
     }//end init
 
     private void initButton(){
@@ -60,7 +58,8 @@ public class bodsee extends Activity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                bodseeData.nextQuestion();
+                imageViewBodSee.setImageResource( bodseeData.getResourceByFilename(getApplicationContext(), "image" + bodseeData.getNumberQuestion() ) );
             }
         });
 
@@ -78,6 +77,13 @@ public class bodsee extends Activity{
                 int len = test.getText().length();
                 if (len > 0)
                     test.setText(test.getText().toString().substring(0, len - 1));
+            }
+        });
+
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAns();
             }
         });
 
@@ -161,25 +167,22 @@ public class bodsee extends Activity{
     }//end button
 
     private void checkAns(){
-        check.setOnClickListener(new View.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(BodseeActivity.this);
+        builder.setTitle("ตรวจสอบ");
+        if(test.getText().toString().equals( bodseeData.getAnsOfQuestion( bodseeData.getNumberQuestion() ) ))
+            answer = "Yes";
+        else
+            answer = "No";
+        bodseeData.nextQuestion();
+        builder.setMessage(answer);
+        builder.setNeutralButton("ตกลง", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(bodsee.this);
-                builder.setTitle("ตรวจสอบ");
-                if(test.getText().toString().equals("2"))
-                    answer = "Yes";
-                else
-                    answer = "No";
-                builder.setMessage(answer);
-                builder.setNegativeButton("ตกลง", null);
-                builder.create();
-                builder.show();
+            public void onClick(DialogInterface dialogInterface, int i) {
+                imageViewBodSee.setImageResource( bodseeData.getResourceByFilename(getApplicationContext(), "image" + bodseeData.getNumberQuestion() ) );
             }
         });
+        builder.create();
+        builder.show();
     }//end checkans
-
-    public static int getResourceByFilename(Context context, String filename) {
-        return context.getResources().getIdentifier(filename, "drawable", context.getPackageName());
-    }
 
 }//end class

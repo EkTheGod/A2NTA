@@ -28,7 +28,7 @@ public class First extends Activity {
         bodsee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), bodsee.class);
+                Intent i = new Intent(getApplicationContext(), BodseeActivity.class);
                 startActivity(i);
             }
         });
