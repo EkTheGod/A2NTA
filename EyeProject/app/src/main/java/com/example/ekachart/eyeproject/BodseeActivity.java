@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class BodseeActivity extends Activity{
     private Button check,next,home;
     private Button[] input;
-    private TextView test;
+    private TextView inputAnsTv;
     private ImageButton delete;
     private String answer;
     private ImageView imageViewBodSee;
@@ -33,6 +33,9 @@ public class BodseeActivity extends Activity{
     }
 
     private void init() {
+        bodseeData = new BodseeData();
+        imageViewBodSee = (ImageView) findViewById(R.id.bodseeIV);
+        imageViewBodSee.setImageResource(bodseeData.getCurrentPicQuestion(getApplicationContext()));
         input = new Button[10];
         input[0] = (Button)findViewById(R.id.b0);
         input[1] = (Button)findViewById(R.id.b1);
@@ -44,13 +47,11 @@ public class BodseeActivity extends Activity{
         input[7] = (Button)findViewById(R.id.b7);
         input[8] = (Button)findViewById(R.id.b8);
         input[9] = (Button)findViewById(R.id.b9);
-        test = (TextView)findViewById(R.id.num);
+        inputAnsTv = (TextView)findViewById(R.id.num);
         check = (Button)findViewById(R.id.check);
         home = (Button)findViewById(R.id.home);
         next = (Button)findViewById(R.id.next);
         delete = (ImageButton)findViewById(R.id.delete);
-        imageViewBodSee = (ImageView) findViewById(R.id.bodseeIV);
-        bodseeData = new BodseeData();
     }//end init
 
     private void initButton(){
@@ -58,8 +59,7 @@ public class BodseeActivity extends Activity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bodseeData.nextQuestion();
-                imageViewBodSee.setImageResource( bodseeData.getResourceByFilename(getApplicationContext(), "image" + bodseeData.getNumberQuestion() ) );
+                nextQuestion();
             }
         });
 
@@ -74,9 +74,9 @@ public class BodseeActivity extends Activity{
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int len = test.getText().length();
+                int len = inputAnsTv.getText().length();
                 if (len > 0)
-                    test.setText(test.getText().toString().substring(0, len - 1));
+                    inputAnsTv.setText(inputAnsTv.getText().toString().substring(0, len - 1));
             }
         });
 
@@ -90,7 +90,7 @@ public class BodseeActivity extends Activity{
         delete.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                test.setText("");
+                inputAnsTv.setText("");
                 return false;
             }
         });
@@ -98,70 +98,70 @@ public class BodseeActivity extends Activity{
         input[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[0].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[0].getText());
             }
         });
 
         input[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[1].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[1].getText());
             }
         });
 
         input[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[2].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[2].getText());
             }
         });
 
         input[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[3].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[3].getText());
             }
         });
 
         input[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[4].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[4].getText());
             }
         });
 
         input[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[5].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[5].getText());
             }
         });
 
         input[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[6].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[6].getText());
             }
         });
 
         input[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[7].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[7].getText());
             }
         });
 
         input[8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[8].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[8].getText());
             }
         });
 
         input[9].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                test.setText(test.getText().toString() + input[9].getText());
+                inputAnsTv.setText(inputAnsTv.getText().toString() + input[9].getText());
             }
         });
     }//end button
@@ -169,20 +169,25 @@ public class BodseeActivity extends Activity{
     private void checkAns(){
         AlertDialog.Builder builder = new AlertDialog.Builder(BodseeActivity.this);
         builder.setTitle("ตรวจสอบ");
-        if(test.getText().toString().equals( bodseeData.getAnsOfQuestion( bodseeData.getNumberQuestion() ) ))
+        if(inputAnsTv.getText().toString().equals( bodseeData.getAnsOfQuestion( bodseeData.getNumberQuestion() ) ))
             answer = "Yes";
         else
             answer = "No";
-        bodseeData.nextQuestion();
         builder.setMessage(answer);
         builder.setNeutralButton("ตกลง", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                imageViewBodSee.setImageResource( bodseeData.getResourceByFilename(getApplicationContext(), "image" + bodseeData.getNumberQuestion() ) );
+                imageViewBodSee.setImageResource(bodseeData.nextPicQuestion(getApplicationContext()));
             }
         });
         builder.create();
         builder.show();
+        inputAnsTv.setText("");
+
     }//end checkans
+
+    private void nextQuestion(){
+        imageViewBodSee.setImageResource( bodseeData.nextPicQuestion(getApplicationContext()) );
+    }
 
 }//end class

@@ -17,12 +17,21 @@ public class BodseeData {
         return context.getResources().getIdentifier(filename, "drawable", context.getPackageName());
     }
 
+    public int nextPicQuestion(Context context){
+        nextQuestion();
+        return getResourceByFilename(context, "bodsee_image" + numberQuestion);
+    }
+
     public int getNumberQuestion(){
         return numberQuestion;
     }
 
-    public void nextQuestion(){
+    private void nextQuestion(){
         numberQuestion++;
+    }
+
+    public int getCurrentPicQuestion(Context context){
+        return getResourceByFilename(context, "bodsee_image" + numberQuestion);
     }
 
 }//end class
