@@ -33,5 +33,4 @@ public class BodseeData {
     public int getCurrentPicQuestion(Context context){
         return getResourceByFilename(context, "bodsee_image" + numberQuestion);
     }
-
 }//end class

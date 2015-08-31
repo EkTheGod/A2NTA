@@ -21,7 +21,9 @@
                 android:screenOrientation="portrait"/>
             <activity android:name="com.example.ekachart.eyeproject.iang"
                 android:screenOrientation="portrait"/>
-        <activity android:name=".BodseeActivity"
+            <activity android:name=".BodseeActivity"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".popupimage"
                 android:screenOrientation="portrait"/>
     </application>
     <uses-permission android:name="android.permission.CAMERA"/>

@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_margin="5dip"
-        android:id="@+id/extraView">
+        android:id="@+id/extraimage"
+        android:src="@drawable/bodsee_image1">
     </ImageView>
 
 </RelativeLayout>

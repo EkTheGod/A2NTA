@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Ekachart on 28/12/2557.
@@ -23,6 +25,8 @@ public class BodseeActivity extends Activity{
     private String answer;
     private ImageView imageViewBodSee;
     private BodseeData bodseeData;
+    int numpic;
+    private ScrollView mainscrollview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class BodseeActivity extends Activity{
         setContentView(R.layout.bodsee1);
         init();
         initButton();
+
     }
 
     private void init() {
@@ -52,14 +57,29 @@ public class BodseeActivity extends Activity{
         home = (Button)findViewById(R.id.home);
         next = (Button)findViewById(R.id.next);
         delete = (ImageButton)findViewById(R.id.delete);
+        numpic = bodseeData.getNumberQuestion();
+        mainscrollview = (ScrollView) findViewById(R.id.main);
     }//end init
 
     private void initButton(){
 
+        imageViewBodSee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j = new Intent(getApplicationContext(), popupimage.class);
+                j.putExtra("num", Integer.toString(numpic));
+                startActivity(j);
+            }
+        });
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                inputAnsTv.setText("");
+                mainscrollview.fullScroll(ScrollView.FOCUS_UP);
                 nextQuestion();
+                numpic = bodseeData.getNumberQuestion();
+                //Toast.makeText(getApplicationContext(), Integer.toString(numpic),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -183,7 +203,6 @@ public class BodseeActivity extends Activity{
         builder.create();
         builder.show();
         inputAnsTv.setText("");
-
     }//end checkans
 
     private void nextQuestion(){
