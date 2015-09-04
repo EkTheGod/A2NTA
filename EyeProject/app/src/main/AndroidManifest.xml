@@ -25,6 +25,10 @@
                 android:screenOrientation="portrait"/>
             <activity android:name=".popupimage"
                 android:screenOrientation="portrait"/>
+            <activity android:name=".iang2"
+                android:screenOrientation="portrait"/>
+            <activity android:name=".iang3"
+                android:screenOrientation="portrait"/>
     </application>
     <uses-permission android:name="android.permission.CAMERA"/>
 
